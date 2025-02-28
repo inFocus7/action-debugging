@@ -1,0 +1,20 @@
+name: Kind-Action A
+description: Trying out the kind-action which is receiving XML version not found when installing kubectl.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test_kind:
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Install kind
+      uses: helm/kind-action@v1.10.0
+      with:
+        install_only: true
+        version: 'v0.26.0'
+        kubectl_version: 'v1.32.2'
