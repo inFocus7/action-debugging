@@ -1,0 +1,61 @@
+name: Kind-Action A
+description: Trying out the kind-action which is receiving XML version not found when installing kubectl.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test_kind_latest_1_32:
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Install kind
+      uses: helm/kind-action@v1.11.0
+      continue-on-error: true
+      with:
+        install_only: true
+        version: 'v0.26.0'
+        kubectl_version: 'v1.32.2'
+  test_kind_smallest_1_32:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Install kind
+        uses: helm/kind-action@v1.11.0
+        continue-on-error: true
+        with:
+          install_only: true
+          version: 'v0.26.0'
+          kubectl_version: 'v1.32.0'
+  test_kind_latest_1_31:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Install kind
+        uses: helm/kind-action@v1.11.0
+        continue-on-error: true
+        with:
+          install_only: true
+          version: 'v0.26.0'
+          kubectl_version: 'v1.31.6'
+  test_kind_second_smallest_1_31: # this is the only one i expect to pass based on it being in the storage
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Install kind
+        uses: helm/kind-action@v1.11.0
+        continue-on-error: true
+        with:
+          install_only: true
+          version: 'v0.26.0'
+          kubectl_version: 'v1.31.1'
+  test_kind_smallest_1_31: # this is the only one i expect to pass based on it being in the storage
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Install kind
+        uses: helm/kind-action@v1.11.0
+        continue-on-error: true
+        with:
+          install_only: true
+          version: 'v0.26.0'
+          kubectl_version: 'v1.31.0'
